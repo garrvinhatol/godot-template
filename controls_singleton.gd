@@ -21,8 +21,7 @@ func _process(_delta: float) -> void:
 
 func start_drag():
 	EventBus.state_chart.send_event("drag")
-	# EventBus.clicked_object(get_draggable_at_position(control_position.value_axis_2d))
-	# print(get_object_at_position(control_position.value_axis_2d))
+
 
 func release_drag():
 	EventBus.state_chart.send_event("drag_release")
