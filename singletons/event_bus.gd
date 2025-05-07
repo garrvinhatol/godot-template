@@ -9,7 +9,7 @@ var drag_offset:Vector2 = Vector2.ZERO
 
 func _ready() -> void:
 	# Load the state chart scene
-	var state_chart_scene = load("res://game_state_chart.tscn")
+	var state_chart_scene = load("res://singletons/game_state_chart.tscn")
 	if state_chart_scene:
 		# Instance the state chart
 		state_chart = state_chart_scene.instantiate()

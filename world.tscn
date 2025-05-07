@@ -1,11 +1,11 @@
 [gd_scene load_steps=8 format=3 uid="uid://bl7hk4iuh8jpi"]
 
 [ext_resource type="Script" uid="uid://vhl74vcvuauk" path="res://world.gd" id="1_f3sb7"]
-[ext_resource type="PackedScene" uid="uid://1ljy43c4jga3" path="res://controls.tscn" id="2_fj7yv"]
+[ext_resource type="PackedScene" uid="uid://1ljy43c4jga3" path="res://singletons/controls.tscn" id="2_fj7yv"]
 [ext_resource type="Resource" uid="uid://dtr6rl2xw4tit" path="res://controls/inventory.tres" id="2_tlwt5"]
-[ext_resource type="PackedScene" uid="uid://dm5vlvflyo3wb" path="res://draggable.tscn" id="4_aqk2v"]
+[ext_resource type="PackedScene" uid="uid://dm5vlvflyo3wb" path="res://drag_and_drop/draggable.tscn" id="4_aqk2v"]
 [ext_resource type="Resource" uid="uid://dlif0yygokc7c" path="res://controls/position.tres" id="5_036b0"]
-[ext_resource type="PackedScene" uid="uid://bla1k773vkku0" path="res://drop_area.tscn" id="5_dwbse"]
+[ext_resource type="PackedScene" uid="uid://bla1k773vkku0" path="res://drag_and_drop/drop_area.tscn" id="5_dwbse"]
 [ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="7_pkg7o"]
 
 [node name="World" type="Node2D"]

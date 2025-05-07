@@ -18,8 +18,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 GUIDE="*res://addons/guide/guide.gd"
-GUtils="*res://g_utils.gd"
-EventBus="*res://event_bus.gd"
+GUtils="*res://singletons/g_utils.gd"
+EventBus="*res://singletons/event_bus.gd"
 
 [editor_plugins]
 
