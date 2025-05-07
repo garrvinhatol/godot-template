@@ -11,12 +11,15 @@ config_version=5
 [application]
 
 config/name="spark 2"
+run/main_scene="uid://bl7hk4iuh8jpi"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 GUIDE="*res://addons/guide/guide.gd"
+GUtils="*res://g_utils.gd"
+EventBus="*res://event_bus.gd"
 
 [editor_plugins]
 

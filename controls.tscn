@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://1ljy43c4jga3"]
+
+[ext_resource type="Script" uid="uid://bv7weijjgf4go" path="res://controls_singleton.gd" id="1_uouys"]
+[ext_resource type="Resource" uid="uid://dmxv4ntyxf6ve" path="res://controls/drag.tres" id="2_7cb2x"]
+
+[node name="ControlsSingleton" type="Node"]
+script = ExtResource("1_uouys")
+drag = ExtResource("2_7cb2x")

@@ -1,0 +1,100 @@
+[gd_scene load_steps=11 format=3 uid="uid://dm5vlvflyo3wb"]
+
+[ext_resource type="Texture2D" uid="uid://m004easx4rv8" path="res://icon.svg" id="1_23t8e"]
+[ext_resource type="Script" uid="uid://bwevfiuia6jos" path="res://draggable.gd" id="1_law6f"]
+[ext_resource type="Script" uid="uid://couw105c3bde4" path="res://addons/godot_state_charts/state_chart.gd" id="3_c7emi"]
+[ext_resource type="Script" uid="uid://jk2jm1g6q853" path="res://addons/godot_state_charts/compound_state.gd" id="4_ky46g"]
+[ext_resource type="Script" uid="uid://cytafq8i1y8qm" path="res://addons/godot_state_charts/atomic_state.gd" id="5_j6j05"]
+[ext_resource type="Script" uid="uid://cf1nsco3w0mf6" path="res://addons/godot_state_charts/transition.gd" id="6_y2jlc"]
+[ext_resource type="Script" uid="uid://bambbrd2wupx0" path="res://addons/godot_state_charts/state_is_active_guard.gd" id="7_ky46g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_law6f"]
+size = Vector2(129, 128)
+
+[sub_resource type="Resource" id="Resource_j6j05"]
+script = ExtResource("7_ky46g")
+state = NodePath("..")
+metadata/_custom_type_script = "uid://bambbrd2wupx0"
+
+[sub_resource type="Resource" id="Resource_y2jlc"]
+script = ExtResource("7_ky46g")
+state = NodePath("..")
+metadata/_custom_type_script = "uid://bambbrd2wupx0"
+
+[node name="Draggable" type="Node2D"]
+script = ExtResource("1_law6f")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_23t8e")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_law6f")
+
+[node name="StateChart" type="Node" parent="."]
+script = ExtResource("3_c7emi")
+metadata/_custom_type_script = "uid://couw105c3bde4"
+
+[node name="Main" type="Node" parent="StateChart"]
+script = ExtResource("4_ky46g")
+initial_state = NodePath("Dock")
+metadata/_custom_type_script = "uid://jk2jm1g6q853"
+
+[node name="Dock" type="Node" parent="StateChart/Main"]
+script = ExtResource("4_ky46g")
+initial_state = NodePath("Docking")
+metadata/_custom_type_script = "uid://jk2jm1g6q853"
+
+[node name="Docking" type="Node" parent="StateChart/Main/Dock"]
+script = ExtResource("5_j6j05")
+metadata/_custom_type_script = "uid://cytafq8i1y8qm"
+
+[node name="Dock" type="Node" parent="StateChart/Main/Dock/Docking"]
+script = ExtResource("6_y2jlc")
+to = NodePath("../../Docked")
+event = &"end_dock"
+delay_in_seconds = "0.0"
+metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
+
+[node name="Docked" type="Node" parent="StateChart/Main/Dock"]
+script = ExtResource("5_j6j05")
+metadata/_custom_type_script = "uid://cytafq8i1y8qm"
+
+[node name="Move" type="Node" parent="StateChart/Main/Dock/Docked"]
+script = ExtResource("6_y2jlc")
+to = NodePath("../../../Moving")
+event = &"move"
+guard = SubResource("Resource_j6j05")
+delay_in_seconds = "0.0"
+metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
+
+[node name="Moving" type="Node" parent="StateChart/Main"]
+script = ExtResource("5_j6j05")
+metadata/_custom_type_script = "uid://cytafq8i1y8qm"
+
+[node name="StartDock" type="Node" parent="StateChart/Main/Moving"]
+script = ExtResource("6_y2jlc")
+to = NodePath("../../Dock")
+event = &"start_dock"
+guard = SubResource("Resource_y2jlc")
+delay_in_seconds = "0.0"
+metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
+
+[node name="Locked" type="Node" parent="StateChart/Main"]
+script = ExtResource("5_j6j05")
+metadata/_custom_type_script = "uid://cytafq8i1y8qm"
+
+[node name="Split" type="Node" parent="StateChart/Main"]
+script = ExtResource("4_ky46g")
+initial_state = NodePath("Live")
+metadata/_custom_type_script = "uid://jk2jm1g6q853"
+
+[node name="Live" type="Node" parent="StateChart/Main/Split"]
+script = ExtResource("5_j6j05")
+metadata/_custom_type_script = "uid://cytafq8i1y8qm"
+
+[node name="Cancelled" type="Node" parent="StateChart/Main/Split"]
+script = ExtResource("5_j6j05")
+metadata/_custom_type_script = "uid://cytafq8i1y8qm"

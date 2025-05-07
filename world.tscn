@@ -1,0 +1,36 @@
+[gd_scene load_steps=8 format=3 uid="uid://bl7hk4iuh8jpi"]
+
+[ext_resource type="Script" uid="uid://vhl74vcvuauk" path="res://world.gd" id="1_f3sb7"]
+[ext_resource type="PackedScene" uid="uid://1ljy43c4jga3" path="res://controls.tscn" id="2_fj7yv"]
+[ext_resource type="Resource" uid="uid://dtr6rl2xw4tit" path="res://controls/inventory.tres" id="2_tlwt5"]
+[ext_resource type="PackedScene" uid="uid://dm5vlvflyo3wb" path="res://draggable.tscn" id="4_aqk2v"]
+[ext_resource type="Resource" uid="uid://dlif0yygokc7c" path="res://controls/position.tres" id="5_036b0"]
+[ext_resource type="PackedScene" uid="uid://bla1k773vkku0" path="res://drop_area.tscn" id="5_dwbse"]
+[ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="7_pkg7o"]
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_f3sb7")
+context_map = ExtResource("2_tlwt5")
+
+[node name="ControlsSingleton" parent="." instance=ExtResource("2_fj7yv")]
+control_position = ExtResource("5_036b0")
+
+[node name="DropArea" parent="." instance=ExtResource("5_dwbse")]
+position = Vector2(474, 191)
+
+[node name="DropArea3" parent="." instance=ExtResource("5_dwbse")]
+position = Vector2(341, 191)
+
+[node name="DropArea2" parent="." instance=ExtResource("5_dwbse")]
+position = Vector2(607, 190)
+
+[node name="Draggable" parent="." node_paths=PackedStringArray("docking_node") instance=ExtResource("4_aqk2v")]
+position = Vector2(273, 350)
+docking_node = NodePath("../DropArea")
+
+[node name="StateChartDebugger" parent="." instance=ExtResource("7_pkg7o")]
+offset_left = 516.0
+offset_top = 344.0
+offset_right = 1146.0
+offset_bottom = 642.0
+initial_node_to_watch = NodePath("../Draggable")

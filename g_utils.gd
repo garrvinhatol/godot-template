@@ -3,6 +3,15 @@ extends Node
 #UTILS CODE. Needs to be added as autoload in project settings.
 # MUST INHERIT FROM NODE, instanced as a node.
 
+var current_scene = null
+
+# CURRENT SCENE MUST BE SWITCHED IF SCENE SWITCHES HAPPEN
+func _ready():
+	var root = get_tree().root
+	# Using a negative index counts from the end, so this gets the last child node of `root`.
+	current_scene = root.get_child(-1)
+
+
 # Automatically connects state signals for all states in the state chart
 # to corresponding methods in the target object
 # Parameters:
