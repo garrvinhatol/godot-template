@@ -15,7 +15,6 @@ func _ready():
 
 func _on_docking_state_processing(_delta:float):
 	var dock_pos = docking_node.position
-	print(position == dock_pos)
 	if position.distance_to(dock_pos) > 4:
 		position = position.lerp(dock_pos, lerp_speed/1.5 * _delta)
 	elif position.distance_to(dock_pos) > 3:

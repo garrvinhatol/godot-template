@@ -42,10 +42,6 @@ func _on_dragging_state_exited():
 		dragged_object = null
 	drag_offset = Vector2.ZERO
 
-
-
-
-
 func get_object_at_position(position):
 	# Setup the point query parameters
 	var space_state: PhysicsDirectSpaceState2D = GUtils.current_scene.get_world_2d().direct_space_state
